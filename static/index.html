@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digit recognizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="rig">
+
+  <header class="masthead">
+    <h1>Digit recognizer</h1>
+    <p class="sub">Draw one digit, 0 through 9. Fill the box &mdash; big strokes read better than small ones.</p>
+    <p class="backend" id="backend" aria-live="polite"></p>
+  </header>
+
+  <section class="panel panel--draw">
+    <div class="panel__label">Input</div>
+    <div class="pad">
+      <canvas id="pad" width="336" height="336" aria-label="Drawing area. Use a mouse, finger, or stylus."></canvas>
+      <p class="pad__hint" id="hint">Draw here</p>
+    </div>
+    <div class="controls">
+      <button type="button" id="clear" class="btn btn--ghost">Clear</button>
+      <button type="button" id="predict" class="btn btn--solid">Predict</button>
+    </div>
+  </section>
+
+  <section class="panel panel--read">
+    <div class="panel__label">Reading</div>
+
+    <div class="verdict">
+      <output class="verdict__digit" id="digit" aria-live="polite">&ndash;</output>
+      <div class="verdict__meta">
+        <span class="verdict__conf" id="confidence">awaiting input</span>
+        <figure class="seen">
+          <img id="seen" alt="The 28 by 28 pixel image sent to the model" width="28" height="28">
+          <figcaption>28&times;28 as sent</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <ol class="bars" id="bars"></ol>
+    <p class="status" id="status" role="status"></p>
+  </section>
+
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
